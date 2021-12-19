@@ -5,3 +5,6 @@ Cracking the coding interview  6th edition solutions in Go.
 ```bash
 go test -v ./...
 ```
+
+**Reference**
+- Name and repo structure inspired from https://github.com/krlv/ctci-go
