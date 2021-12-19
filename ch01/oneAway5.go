@@ -16,10 +16,7 @@ func isOneAway(text1 string, text2 string) bool {
 		if editCount > 1 {
 			return false
 		}
-		fmt.Println(editCount)
-		fmt.Println(idx)
-		fmt.Println(lenText2)
-		if  idx >= lenText2 {
+		if idx >= lenText2 {
 			editCount += 1
 			continue
 		}
