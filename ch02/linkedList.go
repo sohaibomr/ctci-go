@@ -20,7 +20,13 @@ func newLinkedList() *LinkedList {
 		Head: nil,
 	}
 }
-
+func newLinkedListWithElems(elems []string) *LinkedList {
+	linkedList := newLinkedList()
+	for _, elem := range elems {
+		linkedList.addNode(&Node{Val: elem, Next: nil})
+	}
+	return linkedList
+}
 func (linkedList *LinkedList) addNode(node *Node) {
 
 	if linkedList.Head == nil {
