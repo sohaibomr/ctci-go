@@ -61,3 +61,24 @@ func TestDeleteMiddleNode(t *testing.T) {
 		curNode = curNode.Next
 	}
 }
+
+func TestPartion(t *testing.T) {
+	x := 5
+	linkedList := newLinkedListInt()
+	linkedList.addNode(&NodeInt{Val: 3, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 5, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 8, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 5, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 10, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 2, Next: nil})
+	linkedList.addNode(&NodeInt{Val: 1, Next: nil})
+	linkedList.partition(x)
+	expected := []int{3, 2, 1, 5, 8, 5, 10}
+	curr := linkedList.Head
+	for _, val := range expected {
+		if val != curr.Val {
+			t.Fatalf("Linked list not partioned correctly")
+		}
+		curr = curr.Next
+	}
+}

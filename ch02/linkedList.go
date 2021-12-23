@@ -53,3 +53,46 @@ func (linkedList *LinkedList) printList() {
 	}
 
 }
+
+// Linked List
+
+type NodeInt struct {
+	Val  int
+	Next *NodeInt
+}
+
+type LinkedListInt struct {
+	Head *NodeInt
+}
+
+func newLinkedListInt() *LinkedListInt {
+	return &LinkedListInt{
+		Head: nil,
+	}
+}
+func (linkedList *LinkedListInt) addNode(node *NodeInt) {
+
+	if linkedList.Head == nil {
+		//	first element
+		linkedList.Head = node
+	} else {
+		currenNode := linkedList.Head
+		for currenNode.Next != nil {
+			currenNode = currenNode.Next
+		}
+		currenNode.Next = node
+	}
+
+}
+
+func (linkedList *LinkedListInt) printList() {
+	//TODO: write preety print for lists
+	//var sb strings.Builder
+	currentNode := linkedList.Head
+
+	for currentNode != nil {
+		fmt.Println(currentNode.Val)
+		currentNode = currentNode.Next
+	}
+
+}
