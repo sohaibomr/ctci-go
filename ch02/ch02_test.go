@@ -82,3 +82,47 @@ func TestPartion(t *testing.T) {
 		curr = curr.Next
 	}
 }
+
+func TestSumList(t *testing.T) {
+	linkedList1 := newLinkedListInt()
+	linkedList1.addNode(&NodeInt{Val: 7, Next: nil})
+	linkedList1.addNode(&NodeInt{Val: 1, Next: nil})
+	linkedList1.addNode(&NodeInt{Val: 6, Next: nil})
+
+	linkedList2 := newLinkedListInt()
+	linkedList2.addNode(&NodeInt{Val: 5, Next: nil})
+	linkedList2.addNode(&NodeInt{Val: 9, Next: nil})
+	linkedList2.addNode(&NodeInt{Val: 2, Next: nil})
+	summedList := sumList(linkedList1, linkedList2)
+	expected := []int{2, 1, 9}
+	curr := summedList.Head
+	for _, val := range expected {
+		if val != curr.Val {
+			t.Fatalf("Linked list not summed correctly")
+		}
+		curr = curr.Next
+	}
+}
+
+func TestSumListReverse(t *testing.T) {
+	revList := newLinkedListInt()
+	linkedList1 := newLinkedListInt()
+	linkedList1.addNode(&NodeInt{Val: 6, Next: nil})
+	linkedList1.addNode(&NodeInt{Val: 1, Next: nil})
+	linkedList1.addNode(&NodeInt{Val: 7, Next: nil})
+
+	linkedList2 := newLinkedListInt()
+	linkedList2.addNode(&NodeInt{Val: 2, Next: nil})
+	linkedList2.addNode(&NodeInt{Val: 9, Next: nil})
+	linkedList2.addNode(&NodeInt{Val: 5, Next: nil})
+
+	revList.sumListReverse(linkedList1.Head, linkedList2.Head)
+	expected := []int{9, 1, 2}
+	curr := revList.Head
+	for _, val := range expected {
+		if val != curr.Val {
+			t.Fatalf("Linked list not reversed sum correctly")
+		}
+		curr = curr.Next
+	}
+}

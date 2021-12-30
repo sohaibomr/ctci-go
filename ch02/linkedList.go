@@ -96,3 +96,20 @@ func (linkedList *LinkedListInt) printList() {
 	}
 
 }
+
+func (linkedList *LinkedListInt) addNodeBefore(node *NodeInt) {
+	if linkedList.Head == nil {
+		linkedList.Head = node
+	} else {
+		node.Next = linkedList.Head
+		linkedList.Head = node
+	}
+
+}
+func reversePrint(node *NodeInt) {
+	if node != nil {
+		reversePrint(node.Next)
+		fmt.Println(node.Val)
+	}
+
+}
