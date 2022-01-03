@@ -126,3 +126,101 @@ func TestSumListReverse(t *testing.T) {
 		curr = curr.Next
 	}
 }
+
+func TestPalindrome(t *testing.T) {
+
+	linkedList := newLinkedList()
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNode(&Node{Val: "b", Next: nil})
+	linkedList.addNode(&Node{Val: "c", Next: nil})
+	linkedList.addNode(&Node{Val: "d", Next: nil})
+	result := isPalindrome(linkedList)
+	if result == true {
+		t.Fatal("Palindrome failed! list is not palindrome")
+	}
+}
+
+func TestPalindrome2(t *testing.T) {
+
+	linkedList := newLinkedList()
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNode(&Node{Val: "o", Next: nil})
+	linkedList.addNode(&Node{Val: "o", Next: nil})
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	result := isPalindrome(linkedList)
+	if result == false {
+		t.Fatal("Palindrome failed! list is a palindrome")
+	}
+}
+
+func TestIntersectingNode(t *testing.T) {
+	intersectingNode := &NodeInt{Val: 1, Next: nil}
+	linkedList1 := newLinkedListInt()
+	linkedList1.addNode(&NodeInt{Val: 6, Next: nil})
+	linkedList1.addNode(intersectingNode)
+	linkedList1.addNode(&NodeInt{Val: 7, Next: nil})
+
+	linkedList2 := newLinkedListInt()
+	linkedList2.addNode(&NodeInt{Val: 2, Next: nil})
+	linkedList2.addNode(intersectingNode)
+	linkedList2.addNode(&NodeInt{Val: 5, Next: nil})
+
+	node := findIntersectingNode(linkedList1, linkedList2)
+	fmt.Println(node)
+	fmt.Println(intersectingNode)
+}
+
+func TestLoopDetection(t *testing.T) {
+
+	linkedList := newLinkedList()
+	loopNode := &Node{Val: "o", Next: nil}
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNode(&Node{Val: "o", Next: nil})
+	linkedList.addNode(loopNode)
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNodeBefore(loopNode)
+	result := linkedList.detectLoop()
+	if result == false {
+		t.Fatal("Loop detection failed")
+	}
+}
+
+func TestLoopDetection2(t *testing.T) {
+
+	linkedList := newLinkedList()
+	loopNode := &Node{Val: "o", Next: nil}
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNode(loopNode)
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNodeBefore(loopNode)
+	result := linkedList.detectLoop()
+	if result == false {
+		t.Fatal("Loop detection failed")
+	}
+}
+
+func TestLoopDetection3(t *testing.T) {
+
+	linkedList := newLinkedList()
+	loopNode := &Node{Val: "o", Next: nil}
+	linkedList.addNode(&Node{Val: "a", Next: nil})
+	linkedList.addNode(loopNode)
+	linkedList.addNodeBefore(loopNode)
+	result := linkedList.detectLoop()
+	if result == false {
+		t.Fatal("Loop detection failed")
+	}
+}
+
+func TestLoopDetection4(t *testing.T) {
+	// loop detection with two same nodes
+
+	linkedList := newLinkedList()
+	loopNode := &Node{Val: "o", Next: nil}
+	linkedList.addNode(loopNode)
+	linkedList.addNodeBefore(loopNode)
+	result := linkedList.detectLoop()
+	if result == false {
+		t.Fatal("Loop detection failed")
+	}
+}

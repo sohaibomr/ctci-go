@@ -54,7 +54,29 @@ func (linkedList *LinkedList) printList() {
 
 }
 
-// Linked List
+func (linkedList *LinkedList) addNodeBefore(node *Node) {
+	if linkedList.Head == nil {
+		linkedList.Head = node
+	} else {
+		node.Next = linkedList.Head
+		linkedList.Head = node
+	}
+
+}
+
+func newReversedList(list *LinkedList) *LinkedList {
+	revList := newLinkedList()
+	cur := list.Head
+	for cur != nil {
+		revList.addNodeBefore(&Node{Val: cur.Val,
+			Next: nil,
+		})
+		cur = cur.Next
+	}
+	return revList
+}
+
+// Linked List Int
 
 type NodeInt struct {
 	Val  int
